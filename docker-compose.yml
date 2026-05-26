@@ -166,7 +166,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp:/tmp
-      - ./testrunner/config/testrunner.yaml:/usr/src/app/config/testrunner.yaml:ro
     cap_add:
       - NET_ADMIN
     depends_on:
