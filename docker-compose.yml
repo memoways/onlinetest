@@ -3,13 +3,20 @@ services:
     image: redis:${REDIS_DOCKER_VERSION}
     command:
       - redis-server
-      - /usr/local/etc/redis/redis.conf
+      - --requirepass
+      - ${REDIS_PASSWORD}
+      - --save
+      - "60"
+      - "1"
+      - --appendonly
+      - "yes"
     restart: always
     networks:
       - skynet
     volumes:
       - redis_data:/data
-      - ./redis-conf:/usr/local/etc/redis/
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
     healthcheck:
       test:
         - CMD-SHELL
@@ -17,6 +24,7 @@ services:
       interval: 5s
       timeout: 3s
       retries: 30
+
 
   postgresql:
     image: postgres:${POSTGRESQL_DOCKER_VERSION}
