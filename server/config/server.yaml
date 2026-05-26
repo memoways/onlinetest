@@ -70,7 +70,7 @@ html:
   # You can choose to either show the log from sitespeed.io or a random AI generated image.
   showRandomAIImage: false
   # Show the Lighthouse box
-  useLighthouse: false
+  useLighthouse: true
 
 # How to format dates
 dateformat: "YYYY-MM-DD HH:mm:ss"
