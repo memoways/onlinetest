@@ -1,3 +1,14 @@
+networks:
+  skynet:
+    name: skynet
+  coolify:
+    external: true
+
+volumes:
+  redis_data:
+  postgres_data:
+  minio_data:
+
 services:
   redis:
     image: redis:${REDIS_DOCKER_VERSION}
@@ -87,7 +98,7 @@ services:
       extensions=\".html,.css,.js\" &&
       echo 'MinIO setup complete.'"
 
-  sitespeed.io-server:
+  sitespeed_io-server:
     image: sitespeedio/server:${SITESPEED_IO_SERVER_VERSION}
     restart: always
     networks:
@@ -121,7 +132,7 @@ services:
       retries: 30
       start_period: 30s
 
-  sitespeed.io-testrunner:
+  sitespeed_io-testrunner:
     image: sitespeedio/testrunner:${SITESPEED_IO_TESTRUNNER_VERSION}
     restart: always
     networks:
@@ -152,14 +163,5 @@ services:
         condition: service_healthy
       minio:
         condition: service_healthy
-      sitespeed.io-server:
+      sitespeed_io-server:
         condition: service_healthy
-
-volumes:
-  redis_data:
-  postgres_data:
-  minio_data:
-
-networks:
-  skynet:
-    name: skynet
