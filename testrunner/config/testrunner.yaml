@@ -54,6 +54,18 @@ log:
 # The sitespeed.io executable. The default is a globally installed sitespeed.io
 executable: "sitespeed.io"
 
+plugins:
+  add:
+    - "@sitespeed.io/plugin-lighthouse"
+
+lighthouse:
+  settings:
+    onlyCategories:
+      - performance
+      - accessibility
+      - best-practices
+      - seo
+      
 # If you run sitespeed.io using Docker this is the container that is used.
 # If you use the majir, make sure to docker pull the container once a day
 # to get the latest major version update.
