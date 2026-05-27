@@ -150,6 +150,7 @@ services:
     env_file:
       - .env
     environment:
+      sitespeed.io_crux_apiKey: ${CRUX_API_KEY}
       redis_host: ${REDIS_HOST}
       location_name: ${LOCATION_NAME}
       docker_container: ${SITESPEED_IO_CONTAINER}
