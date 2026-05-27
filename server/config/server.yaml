@@ -106,7 +106,7 @@ queue:
 
 
 # The default sitspeed.io configuration file that will be merged to all tests.
-# defaultSitespeedioConfigFile:
+defaultSitespeedioConfigFile: /tmp/sitespeed.io.json
 
 # If you don't setup a default sitespeed.io configuration, you can add
 # your sitespeed.io configuration directly in this block
