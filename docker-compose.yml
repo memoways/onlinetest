@@ -151,10 +151,11 @@ services:
       - .env
     environment:
       GOOGLE_API_KEY: ${GOOGLE_API_KEY}
-      sitespeedioConfigFile: /tmp/sitespeed.io.json
       redis_host: ${REDIS_HOST}
       location_name: ${LOCATION_NAME}
       docker_container: ${SITESPEED_IO_CONTAINER}
+      sitespeed.io_crux_apiKey: ${GOOGLE_API_KEY}
+      sitespeed.io_gpsi_key:    ${GOOGLE_API_KEY}
       sitespeed.io_s3_endpoint: ${SITESPEED_IO_S3_ENDPOINT}
       sitespeed.io_s3_bucketname: sitespeedio
       sitespeed.io_s3_key: ${MINIO_USER}
@@ -170,17 +171,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp:/tmp
-    entrypoint:
-      - sh
-      - -c
-      - |
-        cat > /tmp/sitespeed.io.json <<EOF
-        {
-          "crux": { "apiKey": "$GOOGLE_API_KEY" },
-          "gpsi": { "key":    "$GOOGLE_API_KEY" }
-        }
-        EOF
-        exec node /usr/src/app/app.js
     cap_add:
       - NET_ADMIN
     depends_on:
