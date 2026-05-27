@@ -147,7 +147,14 @@ services:
       docker_extraparameters:   "--cap-add=NET_ADMIN --network=skynet"
       sitespeedioConfigFile:    /tmp/sitespeed.io.json
       SITESPEED.IO_HTML_HOMEURL: ${SITESPEED_IO_HTML_HOMEURL}
-      
+      sitespeed.io_resultBaseURL:           ${RESULT_BASE_URL}
+      sitespeed.io_s3_endpoint:             ${SITESPEED_IO_S3_ENDPOINT}
+      sitespeed.io_s3_bucketname:           sitespeedio
+      sitespeed.io_s3_key:                  ${MINIO_USER}
+      sitespeed.io_s3_secret:               ${MINIO_PASSWORD}
+      sitespeed.io_s3_region:               motown
+      sitespeed.io_s3_options_forcePathStyle: "true"
+      sitespeed.io_s3_removeLocalResult:    "true"
     entrypoint:
       - sh
       - -c
