@@ -109,6 +109,17 @@ services:
       redis_host: ${REDIS_HOST}
       postgresql_server: ${POSTGRESQL_HOST}
       validTestDomains: ${VALID_TEST_DOMAINS}
+    entrypoint:
+      - sh
+      - -c
+      - |
+        cat > /tmp/sitespeed.io.json <<EOF
+        {
+          "crux": { "apiKey": "$GOOGLE_API_KEY" },
+          "gpsi": { "key":    "$GOOGLE_API_KEY" }
+        }
+        EOF
+        exec node /usr/src/app/app.js
     ports:
       - "3000:3000"
     depends_on:
@@ -155,27 +166,7 @@ services:
       sitespeed.io_s3_region:               motown
       sitespeed.io_s3_options_forcePathStyle: "true"
       sitespeed.io_s3_removeLocalResult:    "true"
-    entrypoint:
-      - sh
-      - -c
-      - |
-        cat > /tmp/sitespeed.io.json <<EOF
-        {
-          "crux": { "apiKey": "$GOOGLE_API_KEY" },
-          "gpsi": { "key":    "$GOOGLE_API_KEY" },
-          "s3": {
-            "endpoint":   "$SITESPEED_IO_S3_ENDPOINT",
-            "bucketname": "sitespeedio",
-            "key":        "$MINIO_USER",
-            "secret":     "$MINIO_PASSWORD",
-            "region":     "motown",
-            "options":    { "forcePathStyle": true },
-            "removeLocalResult": true
-          },
-          "resultBaseURL": "$RESULT_BASE_URL"
-        }
-        EOF
-        exec node /usr/src/app/app.js
+
 
     image: sitespeedio/testrunner:${SITESPEED_IO_TESTRUNNER_VERSION}
     healthcheck:
