@@ -155,7 +155,6 @@ services:
       redis_host: ${REDIS_HOST}
       location_name: ${LOCATION_NAME}
       docker_container: ${SITESPEED_IO_CONTAINER}
-      docker_extraparameters: "--cap-add=NET_ADMIN --network=skynet"
       sitespeed.io_s3_endpoint: ${SITESPEED_IO_S3_ENDPOINT}
       sitespeed.io_s3_bucketname: sitespeedio
       sitespeed.io_s3_key: ${MINIO_USER}
