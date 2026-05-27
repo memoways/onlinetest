@@ -165,6 +165,11 @@ services:
       sitespeed.io_s3_removeLocalResult: "true"
       sitespeed.io_resultBaseURL: ${RESULT_BASE_URL}
       SITESPEED.IO_HTML_HOMEURL: ${SITESPEED_IO_HTML_HOMEURL}
+      docker_extraparameters: >-
+      --cap-add=NET_ADMIN
+      --network=skynet
+      -e sitespeed.io_gpsi_key=${GOOGLE_API_KEY}
+      -e sitespeed.io_crux_apiKey=${GOOGLE_API_KEY}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp:/tmp
